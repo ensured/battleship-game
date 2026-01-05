@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship Multiplayer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚓ Battleship Multiplayer</h1>
+            <div class="connection-status">
+                <span id="status">Connecting...</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-setup" id="gameSetup">
+                <h2>Game Setup</h2>
+                <div class="player-info">
+                    <label for="playerName">Your Name:</label>
+                    <input type="text" id="playerName" placeholder="Enter your name" maxlength="20">
+                    <button id="joinGame">Join Game</button>
+                </div>
+                <div class="waiting-area" id="waitingArea" style="display: none;">
+                    <p>Waiting for another player to join...</p>
+                    <div class="players-list">
+                        <div class="player-slot" id="player1">Player 1: <span id="player1Name">-</span></div>
+                        <div class="player-slot" id="player2">Player 2: <span id="player2Name">-</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-area" id="gameArea" style="display: none;">
+                <div class="boards-container">
+                    <div class="board-section">
+                        <h3>Your Fleet</h3>
+                        <div class="board" id="playerBoard"></div>
+                        <div class="ship-selector">
+                            <h4>Place Your Ships:</h4>
+                            <div class="ships-to-place">
+                                <button class="ship-btn" data-ship="carrier" data-size="5">Carrier (5)</button>
+                                <button class="ship-btn" data-ship="battleship" data-size="4">Battleship (4)</button>
+                                <button class="ship-btn" data-ship="cruiser" data-size="3">Cruiser (3)</button>
+                                <button class="ship-btn" data-ship="submarine" data-size="3">Submarine (3)</button>
+                                <button class="ship-btn" data-ship="destroyer" data-size="2">Destroyer (2)</button>
+                            </div>
+                            <div class="placement-controls">
+                                <button id="rotateShip">Rotate Ship</button>
+                                <button id="readyBtn" class="ready-btn" disabled>Ready</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board-section">
+                        <h3>Enemy Waters</h3>
+                        <div class="board" id="enemyBoard"></div>
+                        <div class="game-info">
+                            <div class="current-turn" id="currentTurn">Waiting for ships...</div>
+                            <div class="score">
+                                <div>Your Hits: <span id="playerHits">0</span></div>
+                                <div>Enemy Hits: <span id="enemyHits">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-over" id="gameOver" style="display: none;">
+                <h2 id="gameResult">Game Over</h2>
+                <p id="gameMessage"></p>
+                <button id="playAgain">Play Again</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
