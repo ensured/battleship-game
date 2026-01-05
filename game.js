@@ -25,8 +25,8 @@ class BattleshipGame {
     }
 
     initializeSoundEffects() {
-        // Create audio context for sound effects
-        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        // Audio context will be created on first user interaction
+        this.audioContext = null;
         
         this.sounds = {
             hit: () => this.playSound(800, 0.1, 'sine'),
@@ -64,8 +64,9 @@ class BattleshipGame {
     }
 
     connectWebSocket() {
-        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const wsUrl = `${protocol}//${window.location.hostname}:${window.location.port || 3000}`;
+        const wsUrl = process.env.NODE_ENV === 'production' 
+          ? 'wss://battleship-game.pzhy.onrender.com'
+          : `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.hostname}:${window.location.port || 3000}`;
         
         console.log('Connecting to WebSocket at:', wsUrl);
         this.ws = new WebSocket(wsUrl);
